@@ -1,4 +1,4 @@
-package br.com.alura.adopet.api.validacoes;
+package br.com.alura.adopet.api.validacoes.adocao;
 
 import br.com.alura.adopet.api.dto.SolicitacaoAdocaoDTO;
 import br.com.alura.adopet.api.exception.ValidacaoException;
@@ -8,16 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ValidacaoPetComAdocaoEmAndamento implements iValidacaoSolicitacaoAdocao {
+public class ValidacaoTutorComLimiteDeAdocoes implements iValidacaoSolicitacaoAdocao {
 
     @Autowired
     private AdocaoRepository adocaoRepository;
-
     public void validar(SolicitacaoAdocaoDTO dto)
     {
-        var existeAdocaoEmAndamentoParaOPet = this.adocaoRepository.existsByPetIdAndStatus(dto.idPet(),StatusAdocao.AGUARDANDO_AVALIACAO);
-        if(existeAdocaoEmAndamentoParaOPet)
-            throw new ValidacaoException("Pet já está aguardando avaliação para ser adotado!");
+        Long quantidadeDeAdocoes = this.adocaoRepository.countByTutorIdAndStatus(dto.idTutor(),StatusAdocao.APROVADO);
+        if(quantidadeDeAdocoes == 5)
+            throw new ValidacaoException("Tutor chegou ao limite máximo de 5 adoções!");
     }
 
 }
