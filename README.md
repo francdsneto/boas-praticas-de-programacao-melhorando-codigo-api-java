@@ -1,3 +1,9 @@
+# Projeto de acompanhamento do curso Boas Práticas de Programação: Melhore o código de uma API Java
+
+> Status: Concluído
+
+- Neste projeto encontra-se a minha solução para o desafio proposto de melhoria das implemtações de Abrigo, Pet e Tutor.
+
 ## 💻 Sobre o projeto
 
 Adopet é um site fictício de adoção de pets, com funcionalidades para cadastro de tutores, de abrigos e de pets, além de solicitação de adoções. Nesse repositório o projeto será uma API Rest em Java do Adopet.
